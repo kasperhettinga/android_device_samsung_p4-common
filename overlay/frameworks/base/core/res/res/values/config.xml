@@ -111,9 +111,6 @@
 
     <bool name="config_forceDisableHardwareKeyboard">true</bool>
 
-    <!-- True will enable the electron beam screen-off animation. -->
-    <bool name="config_screenOffAnimation">false</bool>
-
     <!-- If true, adds support for no delay A2DP in Samsung devices -->
     <bool name="config_noDelayInATwoDP">true</bool>
 
