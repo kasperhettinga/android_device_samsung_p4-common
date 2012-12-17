@@ -66,7 +66,8 @@ PRODUCT_PROPERTY_OVERRIDES := \
     wifi.interface=wlan0 \
     wifi.supplicant_scan_interval=15 \
     media.stagefright.cache-params=6144/-1/30 \
-    ro.sf.lcd_density=160
+    ro.sf.lcd_density=160 \
+    dalvik.vm.dexopt-data-only=1
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
@@ -114,14 +115,7 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/camera/nvcamera.conf:system/etc/nvcamera.conf \
-    $(LOCAL_PATH)/camera/cameradata/back_camera_test_pattern.yuv:system/cameradata/back_camera_test_pattern.yuv \
-    $(LOCAL_PATH)/camera/cameradata/datapattern_420sp.yuv:system/cameradata/datapattern_420sp.yuv \
-    $(LOCAL_PATH)/camera/cameradata/datapattern_front_420sp.yuv:system/cameradata/datapattern_front_420sp.yuv \
-    $(LOCAL_PATH)/camera/cameradata/front_camera_test_pattern.yuv:system/cameradata/front_camera_test_pattern.yuv
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/hdmi/dectable1.dat:system/etc/hdmi/dectable1.dat \
-    $(LOCAL_PATH)/hdmi/dectable.dat:system/etc/hdmi/dectable.dat
+    $(LOCAL_PATH)/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
 
 PRODUCT_CHARACTERISTICS := tablet,nosdcard
 
@@ -130,7 +124,8 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 PRODUCT_PACKAGES += \
     librs_jni \
     com.android.future.usb.accessory \
-    power.p3
+    power.p3 \
+    libnetcmdiface
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
