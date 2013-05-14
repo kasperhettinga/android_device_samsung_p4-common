@@ -26,6 +26,9 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 TARGET_NO_BOOTLOADER := true
 
+# Kernel Source
+TARGET_KERNEL_SOURCE := kernel/samsung/p4
+
 # Architecture
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
