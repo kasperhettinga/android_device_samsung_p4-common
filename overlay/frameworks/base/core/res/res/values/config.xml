@@ -105,7 +105,7 @@
     <!-- Boolean indicating whether the wifi chipset has p2p support -->
     <bool translatable="false" name="config_wifi_p2p_support">true</bool>
 
-    <!-- <bool name="config_forceDisableHardwareKeyboard">true</bool> -->
+    <bool name="config_forceDisableHardwareKeyboard">true</bool>
 
     <!-- True will enable the electron beam screen-off animation. -->
     <!-- <bool name="config_screenOffAnimation">false</bool> -->

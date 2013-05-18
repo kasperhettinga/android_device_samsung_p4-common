@@ -29,6 +29,12 @@ TARGET_NO_BOOTLOADER := true
 # Kernel Source
 TARGET_KERNEL_SOURCE := kernel/samsung/p4
 
+# Toolchains
+TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.6
+TARGET_GCC_VERSION := 4.7
+TARGET_USE_O3 := true
+TARGET_USE_LINARO_STRING_ROUTINES := true
+
 # Architecture
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
