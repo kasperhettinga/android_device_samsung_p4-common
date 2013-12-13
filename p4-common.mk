@@ -43,12 +43,13 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/sec_touchscreen.idc:system/usr/idc/sec_touchscreen.idc
 
 PRODUCT_COPY_FILES += \
+     $(LOCAL_PATH)/gps.xml:system/etc/gps.xml \
      $(LOCAL_PATH)/gps.conf:system/etc/gps.conf
 
 # LPM (from TW-UX 3.2)
 PRODUCT_COPY_FILES += \
      $(LOCAL_PATH)/lpm/lib/libQmageDecoder.so:system/lib/libQmageDecoder.so \
-     $(LOCAL_PATH)/lpm/bin/lpmkey:system/bin/lpmkey \
+     $(LOCAL_PATH)/lpm/bin/charging_mode:system/bin/charging_mode \
      $(LOCAL_PATH)/lpm/bin/playlpm:system/bin/playlpm \
      $(LOCAL_PATH)/lpm/media/battery_charging_0.qmg:system/media/battery_charging_0.qmg \
      $(LOCAL_PATH)/lpm/media/battery_charging_20.qmg:system/media/battery_charging_20.qmg \
@@ -61,9 +62,8 @@ PRODUCT_COPY_FILES += \
      $(LOCAL_PATH)/lpm/media/Disconnected.qmg:system/media/Disconnected.qmg
 
 PRODUCT_PROPERTY_OVERRIDES := \
-    wifi.interface=wlan0 \
+    wifi.interface=eth0 \
     wifi.supplicant_scan_interval=15 \
-    media.stagefright.cache-params=6144/-1/30 \
     ro.sf.lcd_density=160 \
     ro.bq.gpu_to_cpu_unsupported=1 \
     dalvik.vm.dexopt-data-only=1 \
@@ -75,11 +75,12 @@ PRODUCT_PROPERTY_OVERRIDES := \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
 
+BOARD_WLAN_DEVICE_REV := bcm4330_b1
+
+$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4330/device-bcm.mk)
+
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    $(LOCAL_PATH)/wifi/bcm4330_apsta.bin:system/etc/wifi/bcm4330_apsta.bin \
-    $(LOCAL_PATH)/wifi/bcm4330_p2p.bin:system/etc/wifi/bcm4330_p2p.bin \
-    $(LOCAL_PATH)/wifi/bcm4330_sta.bin:system/etc/wifi/bcm4330_sta.bin
+    $(LOCAL_PATH)/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
 
 PRODUCT_PACKAGES += \
         libinvensense_mpl
@@ -91,20 +92,19 @@ PRODUCT_PACKAGES += \
 # Audio
 PRODUCT_PACKAGES += \
         audio.a2dp.default \
-	audio.usb.default \
-        libaudioutils \
-        libtinyalsa
+        audio.usb.default \
+        audio.primary.p3 \
+        audio_policy.p3 
 
 PRODUCT_COPY_FILES += \
-        $(LOCAL_PATH)/audio/asound.conf:system/etc/asound.conf \
-        device/samsung/p4-common/audio/audio_policy.conf:system/etc/audio_policy.conf \
+        device/samsung/p4-common/libaudio/audio_policy.conf:system/etc/audio_policy.conf \
+        device/samsung/p4-common/libaudio/libasound.conf:system/etc/libasound.conf
         
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml \
     frameworks/native/data/etc/android.hardware.camera.xml:system/etc/permissions/android.hardware.camera.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
-    frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.location.xml:system/etc/permissions/android.hardware.location.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
